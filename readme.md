@@ -1,10 +1,10 @@
 //estructura basica => header-main-footer
 
-header{logo, nombreLocal, nav(home-products-contact-cart) }
+header{logo, nombreLocal, nav(home-contact-cart) }
 
 main{tratar de usar etiquetas semanticas}
 
-footer{nav(sin cart), copyright, grupo, cohorn54, integrantes}
+footer{nav, copyright, grupo, cohorn54, integrantes}
 
 // home - contact - cart
 deben respetar la paleta por ej(se encuentra en el archivo style.css): [FAF8F1,FAEAB1,E5BA73,C58940]

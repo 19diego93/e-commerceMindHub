@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Productos</title>
+</head>
+
+<body>
+    <header id="top" class="min-h-[20vh] flex flex-wrap justify-center items-center bg-[#FAEAB1]">
+        <div
+            class="w-3/4 flex flex-wrap flex-col  justify-around items-center py-4 gap-2 sm:flex-row sm:justify-center ">
+            <img class="w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[200px] lg:h-[200px] xl:w-[250px] xl:h-[250px] border rounded-full shadow-[0px_0px_5px_2px_#FAF8F1]"
+                src="../assets/img/G.png" alt="logo g&2 jewellry">
+            <h1 class=" h1TextShadow px-3 text-xl md:text-2xl lg:text-4xl">-JEWELLERY & FRIENDS-</h1>
+        </div>
+        <nav class="w-full h-1/3 py-5 flex flex-wrap justify-around bg-[#E5BA73]">
+            <a class=" btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
+                href="../home.html">HOME</a>
+            <a class="activeBtn btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
+                href="#">PRODUCTS</a><a class="btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
+                href="./contact.html">CONTACT</a><a
+                class="btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
+                href="./cart.html">CART</a>
+        </nav>
+    </header>
+    <main class="min-h-[60vh]">
+        <section class="flex flex-wrap flex-col items-center gap-5 pb-4 bg-[--blanco] ">
+            <div class="w-full flex justify-center items-center h-14 py-3  mt-2">
+                <h2 class="text-3xl w-full border-b border-[--chocolate] text-center  text-black py-4">PRODUCTOS</h2>
+            </div>
+            <div class="w-2/4 md:w-4/5 flex flex-wrap justify-around items-center gap-5">
+                <div class="flex flex-wrap flex-col md:flex-row justify-center gap-5">
+                    <div class="w-full md:w-[120px] flex flex-wrap justify-center items-center">
+                        <span class="material-symbols-outlined">
+                            tune
+                        </span>
+                        <p class="text-center">Filtrar por: </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap justify-center mb-2">
+                            <p>Categorias </p>
+                        </div>
+                        <select class="w-[180px] text-center rounded-md border shadow-[0px_5px_8px_5px_#CCD3CA]"
+                            name="categorias" id="categoriaSelect">
+                            <option value="" disabled>-elegir categorias-</option>
+                            <option value="" selected>Todos</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap justify-center mb-2">
+                            <p>Materiales </p>
+                        </div>
+                        <select class="w-[180px] text-center rounded-md border shadow-[0px_5px_8px_5px_#CCD3CA]"
+                            name="categorias" id="materialSelect">
+                            <option value="" disabled>-elegir material-</option>
+                            <option value="" selected>Todos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex flex-wrap flex-col">
+                    <div class="flex flex-wrap justify-center mb-2">
+                        <p>Buscar por nombre</p>
+                        <span class="material-symbols-outlined">
+                            search
+                        </span>
+                    </div>
+                    <input class="rounded-md w-[180px] text-center border shadow-[0px_5px_8px_5px_#CCD3CA]" type="text"
+                        name="search" id="joyaSearch">
+                </div>
+            </div>
+            <!-- Contenedor -->
+            <div id="contenedor" class="flex flex-wrap flex-col items-center md:flex-row md:justify-center gap-7 py-7">
+            </div>
+        </section>
+    </main>
+    <footer class="flex flex-wrap justify-center gap-5 pt-4 bg-[#E5BA73]">
+        <nav class="w-full flex flex-wrap justify-around">
+            <a class="btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
+                href="../home.html">HOME</a><a
+                class="activeBtn btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
+                href="#top">PRODUCTS</a><a
+                class="btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
+                href="./contact.html">CONTACT</a><a
+                class="btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
+                href="./cart.html">CART</a>
+        </nav>
+        <div class="text-center text-[#FAF8F1] w-full flex flex-wrap flex-col items-center gap-2 bg-[#C58940] py-3">
+            <p>Grupo N°2</p>
+            <ul class="flex flex-wrap justify-around list-image-[url(../assets/img/diamondList.png)] list-inside w-3/4">
+                <li>Sof</li>
+                <li>Dar</li>
+                <li>Luc</li>
+                <li>Die</li>
+            </ul>
+            <p>MindHub Cohort N°54</p>
+            <p>JEWELLRY&FRIENDS&#169 - 2024. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <!-- JS -->
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/products.js"></script>
+</body>
+
+</html>

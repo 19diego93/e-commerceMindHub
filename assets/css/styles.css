@@ -4,3 +4,20 @@
     --amarillo:#E5BA73;
     --chocolate:#C58940;
 }
+.h1TextShadow{
+    text-shadow: 4px 4px 6px rgba(66, 68, 90, 1);
+}
+
+.btnNav:hover::before {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ffee10;
+}
+.activeBtn{
+    background-color: var(--crema);
+    font-weight: 600;
+}
+.btnNav:hover {
+    color: #ffee10;
+    box-shadow: 0 0 5px #ffee10;
+    text-shadow: 0 0 5px #ffee10;
+}
