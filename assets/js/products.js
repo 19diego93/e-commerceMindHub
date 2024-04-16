@@ -1,6 +1,9 @@
 let contenedor = document.getElementById("contenedor");
 let categoriaSelect = document.getElementById("categoriaSelect")
+let materialSelect = document.getElementById("materialSelect")
 let joyaSearch = document.getElementById("joyaSearch")
+let materiales;
+let currentMaterial;
 let categorias;
 let currentCategoria;
 let searchName;
@@ -26,7 +29,7 @@ let cardExterior = cardData => {
     let card = document.createElement("article");
     card.innerHTML = cardInterior(cardData);
     card.className =
-        " w-[300px] lg:w-[200px] h-[400x] lg:h-[430px] xl:w-[300px] bg-[--crema] text-black p-4 flex flex-col justify-center items-center gap-2 rounded-xl shadow-[0px_5px_8px_5px_#E2E8F0]  hover:bg-[--amarillo] hover:shadow-[0px_6px_10px_8px_#4a5568] delay-150 relative";
+        " w-[300px] lg:w-[200px] h-[400x] lg:h-[430px] xl:w-[300px] bg-[--crema] text-black p-4 flex flex-col justify-center items-center gap-2 rounded-xl shadow-[0px_5px_8px_5px_#CCD3CA]  hover:bg-[--amarillo] hover:shadow-[0px_6px_10px_8px_#4a5568] delay-150 relative";
     return card;
 };
 
@@ -61,6 +64,20 @@ for (const categoria of categorias) {
     categoriaSelect.innerHTML += optionCategoria(categoria)
 }
 
+//filtro materiales
+let filterMaterial = (array, filter) => array.filter(joya => joya.Material.includes(filter))
+
+// opciones de materiales
+let optionMaterial = material => `<option value="${material}">${material}</option>`
+
+materiales = [...new Set(joyas.map(joya => joya.Material))]
+
+for (const material of materiales) {
+    materialSelect.innerHTML += optionMaterial(material)
+}
+
+
+
 //sincronización fuera del evento click y del fetch
 let localStCart = JSON.parse(localStorage.getItem("carrito"))
 if (localStCart) {
@@ -68,7 +85,43 @@ if (localStCart) {
 }
 //  renderizar todas las movies
 renderizarCards(joyas, contenedor, fragmento)
-// evento de los generos
+
+// evento de los Materials
+materialSelect.addEventListener("change", () => {
+    currentMaterial = materialSelect.value
+    if (currentMaterial && categoriaSelect.value && joyaSearch.value) {
+        renderizarCards(filterName(filterCategoria(filterMaterial(joyas, currentMaterial), categoriaSelect.value), joyaSearch.value), contenedor, fragmento)
+    } else if (currentMaterial && !categoriaSelect.value && joyaSearch.value) {
+        renderizarCards(filterName(filterMaterial(joyas, currentMaterial), joyaSearch.value), contenedor, fragmento)
+    } else if (currentMaterial && categoriaSelect.value && !joyaSearch.value) {
+        renderizarCards(filterCategoria(filterMaterial(joyas, currentMaterial), categoriaSelect.value), contenedor, fragmento)
+    }
+    else if (!currentMaterial && categoriaSelect.value && joyaSearch.value) {
+        renderizarCards(filterName(filterCategoria(joyas, categoriaSelect.value), joyaSearch.value), contenedor, fragmento)
+    }
+    else if (!currentMaterial && categoriaSelect.value && !joyaSearch.value) {
+        renderizarCards((filterCategoria(joyas, categoriaSelect.value)), contenedor, fragmento)
+    }
+    else {
+        renderizarCards(filterMaterial(joyas, currentMaterial), contenedor, fragmento)
+    }
+
+    /* if (currentMaterial) {
+        if (joyaSearch) {
+            renderizarCards(filterName(joyaSearch.value, filterCategoria(joyas, currentMaterial)), contenedor, fragmento)
+        } else {
+            renderizarCards(filterCategoria = (joyas, currentMaterial), contenedor, fragmento)
+        }
+    } else {
+        if (joyaSearch) {
+            renderizarCards(filterName(joyaSearch.value, joyas), contenedor, fragmento)
+        } else {
+            renderizarCards(joyas, contenedor, fragmento)
+        }
+    } */
+})
+
+// evento de las Categorias
 categoriaSelect.addEventListener("change", () => {
     currentCategoria = categoriaSelect.value
     if (currentCategoria) {
@@ -85,7 +138,7 @@ categoriaSelect.addEventListener("change", () => {
         }
     }
 })
-// evento del titulo
+// evento del Nombre
 joyaSearch.addEventListener("keyup", e => {
     searchName = e.target.value;
     if (categoriaSelect.value) {

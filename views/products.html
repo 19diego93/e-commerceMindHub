@@ -17,7 +17,7 @@
             class="w-3/4 flex flex-wrap flex-col  justify-around items-center py-4 gap-2 sm:flex-row sm:justify-center ">
             <img class="w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[200px] lg:h-[200px] xl:w-[250px] xl:h-[250px] border rounded-full shadow-[0px_0px_5px_2px_#FAF8F1]"
                 src="../assets/img/G.png" alt="logo g&2 jewellry">
-            <h1 class=" h1TextShadow px-3 text-xl md:text-2xl lg:text-4xl">-JEWELLRY & FIRENDS-</h1>
+            <h1 class=" h1TextShadow px-3 text-xl md:text-2xl lg:text-4xl">-JEWELLERY & FRIENDS-</h1>
         </div>
         <nav class="w-full h-1/3 py-5 flex flex-wrap justify-around bg-[#E5BA73]">
             <a class=" btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
@@ -34,18 +34,34 @@
             <div class="w-full flex justify-center items-center h-14 py-3  mt-2">
                 <h2 class="text-3xl w-full border-b border-[--chocolate] text-center  text-black py-4">PRODUCTOS</h2>
             </div>
-            <div class="w-2/3 flex flex-wrap justify-around gap-5">
-                <div class="flex flex-wrap flex-col">
-                    <div class="flex flex-wrap justify-center mb-2">
-                        <p>Filtrar por categorias </p>
+            <div class="w-2/4 md:w-4/5 flex flex-wrap justify-around items-center gap-5">
+                <div class="flex flex-wrap flex-col md:flex-row justify-center gap-5">
+                    <div class="w-full md:w-[120px] flex flex-wrap justify-center items-center">
                         <span class="material-symbols-outlined">
                             tune
                         </span>
+                        <p class="text-center">Filtrar por: </p>
                     </div>
-                    <select class="w-[180px] text-center rounded-md" name="categorias" id="categoriaSelect">
-                        <option value="" disabled>-elegir categorias-</option>
-                        <option value="" selected>Todos</option>
-                    </select>
+                    <div>
+                        <div class="flex flex-wrap justify-center mb-2">
+                            <p>Categorias </p>
+                        </div>
+                        <select class="w-[180px] text-center rounded-md border shadow-[0px_5px_8px_5px_#CCD3CA]"
+                            name="categorias" id="categoriaSelect">
+                            <option value="" disabled>-elegir categorias-</option>
+                            <option value="" selected>Todos</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap justify-center mb-2">
+                            <p>Materiales </p>
+                        </div>
+                        <select class="w-[180px] text-center rounded-md border shadow-[0px_5px_8px_5px_#CCD3CA]"
+                            name="categorias" id="materialSelect">
+                            <option value="" disabled>-elegir material-</option>
+                            <option value="" selected>Todos</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="flex flex-wrap flex-col">
                     <div class="flex flex-wrap justify-center mb-2">
@@ -54,7 +70,8 @@
                             search
                         </span>
                     </div>
-                    <input class="rounded-md w-[180px] text-center" type="text" name="search" id="joyaSearch">
+                    <input class="rounded-md w-[180px] text-center border shadow-[0px_5px_8px_5px_#CCD3CA]" type="text"
+                        name="search" id="joyaSearch">
                 </div>
             </div>
             <!-- Contenedor -->
