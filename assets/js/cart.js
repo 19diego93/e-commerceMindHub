@@ -21,24 +21,17 @@ function agregarAlCarrito(id, cantidad) {
   });
 }
 
-agregarAlCarrito(1, 1);
-agregarAlCarrito(2, 1);
-agregarAlCarrito(3, 1);
-agregarAlCarrito(1, 1);
+agregarAlCarrito("1", 1);
+agregarAlCarrito("2", 1);
+agregarAlCarrito("3", 1);
+agregarAlCarrito("1", 1);
 
 mostrarCarrito();
 
-
 function obtenerUrlImagen(id) {
-    console.log("🚀 ~ obtenerUrlImagen ~ id:", id)
-    // Aquí podrías implementar la lógica para obtener la URL de la imagen del producto correspondiente al ID
-    // Por ahora, solo devolveré una URL de ejemplo
-    const prod = inventario_joyeria.includes(el => el.id === id)
-    console.log("🚀 ~ obtenerUrlImagen ~ prod:", prod)
-  //   return "https://media.istockphoto.com/id/511646917/es/foto/anillo-de-diamante-oro-diamantes-y-contempor%C3%A1nea.jpg?s=612x612&w=0&k=20&c=aBpJAbCjwqDflMONJky7rZB3Eymj5I_gQS1VHFBYQTM=";
-  //   return prod.Imagen
-  }
-  
+  const prod = inventario_joyeria.filter((el) => el.id === id)[0];
+    return prod.Imagen
+}
 
 function mostrarCarrito() {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -52,26 +45,22 @@ function mostrarCarrito() {
 
     const columnaImagen = document.createElement("td");
     const imagen = document.createElement("img");
-    imagen.src = obtenerUrlImagen(item.id); 
+    imagen.src = obtenerUrlImagen(item.id);
     imagen.alt = "Imagen del producto";
-    imagen.style.maxWidth = "100px"; 
+    imagen.style.maxWidth = "100px";
     columnaImagen.appendChild(imagen);
     fila.appendChild(columnaImagen);
 
-    
     const columnaProducto = document.createElement("td");
-    columnaProducto.textContent = item.id;
+    columnaProducto.textContent = obtenerNombreProducto(item.id);
     fila.appendChild(columnaProducto);
 
-    
     const columnaCantidad = document.createElement("td");
     columnaCantidad.textContent = item.cantidad;
     fila.appendChild(columnaCantidad);
 
-    
     const columnaAcciones = document.createElement("td");
 
-    
     const btnAumentar = document.createElement("button");
     btnAumentar.textContent = "+";
     btnAumentar.addEventListener("click", function () {
@@ -79,7 +68,6 @@ function mostrarCarrito() {
     });
     columnaAcciones.appendChild(btnAumentar);
 
-    
     const btnReducir = document.createElement("button");
     btnReducir.textContent = "-";
     btnReducir.addEventListener("click", function () {
@@ -121,11 +109,7 @@ function reducirCantidad(id) {
   mostrarCarrito();
 }
 
-// Función para obtener el nombre del producto
 function obtenerNombreProducto(id) {
-  // Aquí podrías implementar la lógica para obtener el nombre del producto correspondiente al ID
-  // Por ahora, solo devolveré un nombre de ejemplo
-  return "Anillo de Diamante";
+  const prod = inventario_joyeria.filter((el) => el.id === id)[0];
+  return prod.Nombre
 }
-
-console.log(inventario_joyeria);
