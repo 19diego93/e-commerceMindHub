@@ -27,7 +27,20 @@
                 class="activeBtn btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] " href="#">CART</a>
         </nav>
     </header>
-    <main class="min-h-[60vh]"></main>
+    <main class="min-h-[60vh]">
+
+        <table id="carrito-tabla">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="carrito-cuerpo"></tbody>
+        </table>
+
+    </main>
     <footer class="flex flex-wrap justify-center gap-5 pt-4 bg-[#E5BA73]">
         <nav class="w-full flex flex-wrap justify-around">
             <a class="btnNav border rounded-md px-3 py-1 shadow-[0px_5px_3px_3px_#00000024] "
@@ -51,29 +64,6 @@
         </div>
     </footer>
 
+    <script src="../assets/js/data.js"></script>
+        <script type="module" src="../assets/js/cart.js"></script>
 </body>
-
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Carrito de Compras</h1>
-    <table id="carrito-tabla">
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Cantidad</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody id="carrito-cuerpo"></tbody>
-    </table>
-<script src="../assets/js/data.js"></script>
-    <script type="module" src="../assets/js/cart.js"></script>
-</body>
-</html>
