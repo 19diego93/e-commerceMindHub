@@ -49,12 +49,26 @@ let cardInterior = joya =>
     <div class="flex flex-col items-center justify-center w-full ">    
     <p class="text-2xl ">${joya.Precio}</p>
     <div class=" w-full h-[40px] flex flex-wrap justify-around items-center">
-    ${listCartId.find(item => item.id == joya.id) ? `<div class=" btnNav bg-[#AFD198] rounded-sm px-2 py-1 font-medium cursor-pointer" data-joya-id="${joya.id}"><img id="cartImg" class=w-[30px] h-[25px] cursor-pointer" src="../assets/img/cartLoad.png" data-joya-id="${joya.id}" alt="favorite symbole"></div>` : `<div class=" bg-[--chocolate] rounded-sm px-2 py-1 font-medium cursor-pointer" data-joya-id="${joya.id}"><img id="cartImg" class=w-[30px] h-[25px] cursor-pointer" src="../assets/img/cart.png" data-joya-id="${joya.id}" alt="favorite symbole"></div>`}<p id="cantidadItem" class="text-xl">${preList.find(item => item.id == joya.id) ? preList.find(item => item.id == joya.id).cantidad : cantidadJoya}</p><div class="flex flex-col items-center"><div class="h-1/2 cursor-pointer text-[--blanco] w-[25px] px-[7px] border bg-[--chocolate] btnNav hover:text-black" id="sumarItem" data-joya-id="${joya.id}">+</div><div class="h-1/2 cursor-pointer text-[--blanco] w-[25px] px-[8px] border  bg-[--chocolate] btnNav hover:text-black" id="restarItem" data-joya-id="${joya.id}">-</div></div></div>
+    ${listCartId.find(item => item.id == joya.id) ? `<div class=" btnNav bg-[#AFD198] rounded-sm px-2 py-1 font-medium cursor-pointer" data-joya-id="${joya.id}"><img id="cartImg" class=w-[30px] h-[25px] cursor-pointer" src="../assets/img/cartLoad.png" data-joya-id="${joya.id}" alt="favorite symbole"></div>` : `<div class=" btnNav bg-[--chocolate] rounded-sm px-2 py-1 font-medium cursor-pointer" data-joya-id="${joya.id}"><img id="cartImg" class=w-[30px] h-[25px] cursor-pointer" src="../assets/img/cart.png" data-joya-id="${joya.id}" alt="favorite symbole"></div>`}<p id="cantidadItem" class="text-xl">${preList.find(item => item.id == joya.id) ? preList.find(item => item.id == joya.id).cantidad : cantidadJoya}</p><div class="flex flex-col items-center"><div class="h-1/2 cursor-pointer text-[--blanco] w-[25px] px-[7px] border bg-[--chocolate] btnNav hover:text-black" id="sumarItem" data-joya-id="${joya.id}">+</div><div class="h-1/2 cursor-pointer text-[--blanco] w-[25px] px-[8px] border  bg-[--chocolate] btnNav hover:text-black" id="restarItem" data-joya-id="${joya.id}">-</div></div></div>
     ${(joya.Stock < 5) ? `<div class="flex flex-wrap w-3/4 justify-center mt-7 bg-red-500 transition duration-300 ease-in-out hover:scale-110 rounded-lg"><img class="w-[25px] h-[25px]" src="../assets/img/dobleright.png" alt=""><p class="h-[25px] ">¡¡ Ultimas unidades !!</p><img class="w-[25px] h-[25px]" src="../assets/img/dobleleft.png" alt=""><div>` : ``}
     </div>`;
 
+// funcion alerta toast
+let toastBox = document.getElementById("toastBox");
+let toastAddCart = "Item se agregó exitosamente al carrito";
+let toastDelete = "Item se ha quitado del carrito"
+let toastMaxStock = "Stock insuficiente"
 
+function showToast(msj) {
+    let toast = document.createElement("div");
+    toast.classList.add("toast");
+    toast.innerHTML = msj
+    toastBox.appendChild(toast)
 
+    setTimeout(() => {
+        toast.remove();
+    }, 6000);
+}
 
 
 
@@ -130,11 +144,13 @@ contenedor.addEventListener("click", e => {
             if (listCartId.find(item => item.id == dataSetCartId)) {
                 listCartId = listCartId.filter(item => item.id != dataSetCartId)
                 listCartId.push(preList.find(item => item.id == dataSetCartId))
+
             } else {
                 listCartId.push(preList.find(item => item.id == dataSetCartId))
             }
 
         }
+        showToast(toastAddCart);
         localStorage.setItem("preCarrito", JSON.stringify(preList))
         localStorage.setItem("carrito", JSON.stringify(listCartId))
     }
@@ -145,6 +161,9 @@ contenedor.addEventListener("click", e => {
         } else if (joyas.find(item => item.id == dataSetCartId).Stock > preList.find(item => item.id == dataSetCartId).cantidad) {
             preList.find(item => item.id == dataSetCartId).cantidad++;
             localStorage.setItem("preCarrito", JSON.stringify(preList))
+
+        } else {
+            showToast(toastMaxStock)
         }
     }
     //aprieta -
@@ -159,7 +178,9 @@ contenedor.addEventListener("click", e => {
             } else {
                 preList = [];
                 listCartId = [];
+
             }
+            showToast(toastDelete);
             localStorage.setItem("preCarrito", JSON.stringify(preList))
             localStorage.setItem("carrito", JSON.stringify(listCartId))
         }
