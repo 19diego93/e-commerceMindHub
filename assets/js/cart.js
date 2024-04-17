@@ -84,7 +84,7 @@ function mostrarCarrito() {
 
     const btnEliminar = document.createElement("button");
     btnEliminar.classList.add("action_button", "rounded-md");
-    btnEliminar.textContent = "-";
+    btnEliminar.textContent = "X";
     btnEliminar.addEventListener("click", function () {
       EliminarItem(item.id);
     });
