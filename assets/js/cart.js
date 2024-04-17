@@ -30,7 +30,7 @@ mostrarCarrito();
 
 function obtenerUrlImagen(id) {
   const prod = inventario_joyeria.filter((el) => el.id === id)[0];
-    return prod.Imagen
+  return prod.Imagen;
 }
 
 function mostrarCarrito() {
@@ -42,7 +42,7 @@ function mostrarCarrito() {
 
   carrito.forEach((item) => {
     const fila = document.createElement("tr");
-
+    // fila.classList.add("")
     const columnaImagen = document.createElement("td");
     const imagen = document.createElement("img");
     imagen.src = obtenerUrlImagen(item.id);
@@ -55,24 +55,53 @@ function mostrarCarrito() {
     columnaProducto.textContent = obtenerNombreProducto(item.id);
     fila.appendChild(columnaProducto);
 
-    const columnaCantidad = document.createElement("td");
-    columnaCantidad.textContent = item.cantidad;
-    fila.appendChild(columnaCantidad);
+    // const columnaCantidad = document.createElement("td");
+    // columnaCantidad.textContent = item.cantidad;
+    // fila.appendChild(columnaCantidad);
+
+    // const columnaAcciones = document.createElement("td");
+
+    // const btnAumentar = document.createElement("button");
+    // btnAumentar.textContent = "+";
+    // btnAumentar.addEventListener("click", function () {
+    //   aumentarCantidad(item.id);
+    // });
+    // columnaAcciones.appendChild(btnAumentar);
+
+    // const btnReducir = document.createElement("button");
+    // btnReducir.textContent = "-";
+    // btnReducir.addEventListener("click", function () {
+    //   reducirCantidad(item.id);
+    // });
+    // columnaAcciones.appendChild(btnReducir);
+
+    // fila.appendChild(columnaAcciones);
 
     const columnaAcciones = document.createElement("td");
 
     const btnAumentar = document.createElement("button");
+    btnAumentar.classList.add(
+      "action_button",
+      "rounded-md");
     btnAumentar.textContent = "+";
     btnAumentar.addEventListener("click", function () {
       aumentarCantidad(item.id);
     });
-    columnaAcciones.appendChild(btnAumentar);
+
+    const columnaCantidad = document.createElement("span");
+    columnaCantidad.textContent = item.cantidad;
 
     const btnReducir = document.createElement("button");
+    btnReducir.classList.add(
+      "action_button",
+      "rounded-md");
     btnReducir.textContent = "-";
     btnReducir.addEventListener("click", function () {
       reducirCantidad(item.id);
     });
+
+    columnaAcciones.appendChild(btnAumentar);
+    columnaAcciones.appendChild(columnaCantidad);
     columnaAcciones.appendChild(btnReducir);
 
     fila.appendChild(columnaAcciones);
@@ -111,5 +140,5 @@ function reducirCantidad(id) {
 
 function obtenerNombreProducto(id) {
   const prod = inventario_joyeria.filter((el) => el.id === id)[0];
-  return prod.Nombre
+  return prod.Nombre;
 }
