@@ -80,9 +80,9 @@ function mostrarCarrito() {
       reducirCantidad(item.id);
     });
 
-    columnaAcciones.appendChild(btnAumentar);
-    columnaAcciones.appendChild(columnaCantidad);
     columnaAcciones.appendChild(btnReducir);
+    columnaAcciones.appendChild(columnaCantidad);
+    columnaAcciones.appendChild(btnAumentar);
 
     fila.appendChild(columnaAcciones);
 
@@ -93,11 +93,14 @@ function mostrarCarrito() {
 function aumentarCantidad(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  const producto = carrito.find((item) => item.id === id);
-
-  if (producto) {
-    producto.cantidad++;
-  }
+  // const producto = carrito.find((item) => item.id === id);
+  if (inventario_joyeria.find(item => item.id == id).Stock > carrito.find(item => item.id == id).cantidad) {
+    carrito.find(item => item.id == id).cantidad++;
+    // localStorage.setItem("preCarrito", JSON.stringify(carrito))
+}
+  // if (producto) {
+  //   producto.cantidad++;
+  // }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
