@@ -21,10 +21,10 @@ function agregarAlCarrito(id, cantidad) {
   });
 }
 
-agregarAlCarrito("1", 1);
-agregarAlCarrito("2", 1);
-agregarAlCarrito("3", 1);
-agregarAlCarrito("1", 1);
+// agregarAlCarrito("1", 1);
+// agregarAlCarrito("2", 1);
+// agregarAlCarrito("3", 1);
+// agregarAlCarrito("1", 1);
 
 mostrarCarrito();
 
