@@ -42,15 +42,21 @@ function mostrarCarrito() {
 
   carrito.forEach((item) => {
     const fila = document.createElement("tr");
-    // fila.classList.add("")
     const columnaImagen = document.createElement("td");
     const imagen = document.createElement("img");
-    imagen.classList.add("imagen_prod", "object-cover","rounded-md","self-center","border","border-[--chocolate]")
+    imagen.classList.add(
+      "imagen_prod",
+      "object-cover",
+      "rounded-md",
+      "self-center",
+      "border",
+      "border-[--chocolate]"
+    );
     imagen.src = obtenerUrlImagen(item.id);
     imagen.alt = "Imagen del producto";
     imagen.style.maxWidth = "100px";
     columnaImagen.appendChild(imagen);
-    columnaImagen.classList.add("img--container")
+    columnaImagen.classList.add("img--container");
     fila.appendChild(columnaImagen);
 
     const columnaProducto = document.createElement("td");
@@ -60,9 +66,7 @@ function mostrarCarrito() {
     const columnaAcciones = document.createElement("td");
 
     const btnAumentar = document.createElement("button");
-    btnAumentar.classList.add(
-      "action_button",
-      "rounded-md");
+    btnAumentar.classList.add("action_button", "rounded-md");
     btnAumentar.textContent = "+";
     btnAumentar.addEventListener("click", function () {
       aumentarCantidad(item.id);
@@ -72,17 +76,23 @@ function mostrarCarrito() {
     columnaCantidad.textContent = item.cantidad;
 
     const btnReducir = document.createElement("button");
-    btnReducir.classList.add(
-      "action_button",
-      "rounded-md");
+    btnReducir.classList.add("action_button", "rounded-md");
     btnReducir.textContent = "-";
     btnReducir.addEventListener("click", function () {
       reducirCantidad(item.id);
     });
 
+    const btnEliminar = document.createElement("button");
+    btnEliminar.classList.add("action_button", "rounded-md");
+    btnEliminar.textContent = "X";
+    btnEliminar.addEventListener("click", function () {
+      EliminarItem(item.id);
+    });
+
     columnaAcciones.appendChild(btnReducir);
     columnaAcciones.appendChild(columnaCantidad);
     columnaAcciones.appendChild(btnAumentar);
+    columnaAcciones.appendChild(btnEliminar);
 
     fila.appendChild(columnaAcciones);
 
@@ -93,14 +103,12 @@ function mostrarCarrito() {
 function aumentarCantidad(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  // const producto = carrito.find((item) => item.id === id);
-  if (inventario_joyeria.find(item => item.id == id).Stock > carrito.find(item => item.id == id).cantidad) {
-    carrito.find(item => item.id == id).cantidad++;
-    // localStorage.setItem("preCarrito", JSON.stringify(carrito))
-}
-  // if (producto) {
-  //   producto.cantidad++;
-  // }
+  if (
+    inventario_joyeria.find((item) => item.id == id).Stock >
+    carrito.find((item) => item.id == id).cantidad
+  ) {
+    carrito.find((item) => item.id == id).cantidad++;
+  }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
@@ -109,19 +117,29 @@ function aumentarCantidad(id) {
 
 function reducirCantidad(id) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
+  
   const producto = carrito.find((item) => item.id === id);
-
-  if (producto && producto.cantidad > 1) {
+  
+  if (producto && producto.cantidad >= 1) {
     producto.cantidad--;
   }
-
+  
   localStorage.setItem("carrito", JSON.stringify(carrito));
-
+  
   mostrarCarrito();
 }
 
 function obtenerNombreProducto(id) {
   const prod = inventario_joyeria.filter((el) => el.id === id)[0];
   return prod.Nombre;
+}
+
+const EliminarItem = (id) => {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const itemEliminar = carrito.findIndex(el => el.id === id);
+  console.log("🚀 ~ EliminarItem ~ itemEliminar:", itemEliminar)
+  carrito.splice(itemEliminar,1)
+  console.log("🚀 ~ EliminarItem ~ carrito:", carrito)
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  mostrarCarrito();
 }
