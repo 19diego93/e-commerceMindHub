@@ -35,7 +35,7 @@ let cardExterior = cardData => {
     let card = document.createElement("article");
     card.innerHTML = cardInterior(cardData);
     card.className =
-        " w-[310px] lg:w-[330px] h-[490px] lg:h-[530px] xl:w-[350px] bg-[--crema] text-black p-4 flex flex-col justify-center items-center gap-2 rounded-xl shadow-[0px_5px_8px_5px_#CCD3CA] hover:shadow-[0px_6px_10px_8px_#4a5568] transition delay-300 relative";
+        " w-[250px] lg:w-[290px] h-[400px] lg:h-[420px] xl:w-[320px] bg-[--crema] text-black p-4 flex flex-col justify-center items-center gap-2 rounded-xl shadow-[0px_5px_8px_5px_#CCD3CA] hover:shadow-[0px_6px_10px_8px_#4a5568] transition delay-300 relative";
     return card;
 };
 
@@ -43,14 +43,14 @@ let cardExterior = cardData => {
 // interior card
 
 let cardInterior = joya =>
-    `<img class="w-[200px] h-[200px] xl:w-[250px] object-cover rounded-md self-center border border-[--chocolate] transition duration-300 ease-in-out hover:scale-110" src="${joya.Imagen}" alt="${joya.Nombre}">
-    <h3 class="font-medium text-lg">${joya.Nombre}</h3>
-    <p class="text-center text-md h-[60px] ">${joya.Descripcion}</p>
+    `<img class="w-[200px] h-[180px] lg:w-[250px] object-cover rounded-md self-center border border-[--chocolate] transition duration-300 ease-in-out hover:scale-110" src="${joya.Imagen}" alt="${joya.Nombre}">
+    <h3 class="font-medium text-md">${joya.Nombre}</h3>
+    <p class="text-center text-sm h-[60px] ">${joya.Descripcion}</p>
     <div class="flex flex-col items-center justify-center w-full ">    
     <p class="text-2xl ">${joya.Precio}</p>
     <div class=" w-full h-[40px] flex flex-wrap justify-around items-center">
     ${listCartId.find(item => item.id == joya.id) ? `<div class=" btnNav bg-[#AFD198] rounded-sm px-2 py-1 font-medium cursor-pointer" data-joya-id="${joya.id}"><img id="cartImg" class=w-[30px] h-[25px] cursor-pointer" src="../assets/img/cartLoad.png" data-joya-id="${joya.id}" alt="favorite symbole"></div>` : `<div class=" btnNav bg-[--chocolate] rounded-sm px-2 py-1 font-medium cursor-pointer" data-joya-id="${joya.id}"><img id="cartImg" class=w-[30px] h-[25px] cursor-pointer" src="../assets/img/cart.png" data-joya-id="${joya.id}" alt="favorite symbole"></div>`}<p id="cantidadItem" class="text-xl">${preList.find(item => item.id == joya.id) ? preList.find(item => item.id == joya.id).cantidad : cantidadJoya}</p><div class="flex flex-col items-center"><div class="h-1/2 cursor-pointer text-[--blanco] w-[25px] px-[7px] border bg-[--chocolate] btnNav hover:text-black" id="sumarItem" data-joya-id="${joya.id}">+</div><div class="h-1/2 cursor-pointer text-[--blanco] w-[25px] px-[8px] border  bg-[--chocolate] btnNav hover:text-black" id="restarItem" data-joya-id="${joya.id}">-</div></div></div>
-    ${(joya.Stock < 5) ? `<div class="flex flex-wrap w-3/4 justify-center mt-7 bg-red-500 transition duration-300 ease-in-out hover:scale-110 rounded-lg"><img class="w-[25px] h-[25px]" src="../assets/img/dobleright.png" alt=""><p class="h-[25px] ">¡¡ Ultimas unidades !!</p><img class="w-[25px] h-[25px]" src="../assets/img/dobleleft.png" alt=""><div>` : ``}
+    ${(joya.Stock < 5) ? `<div class="flex flex-wrap w-4/5 justify-center mt-7 bg-red-500 transition duration-300 ease-in-out hover:scale-110 rounded-lg"><img class="w-[20px] h-[20px]" src="../assets/img/dobleright.png" alt=""><p class="h-[20px] text-sm">¡¡ Ultimas unidades !!</p><img class="w-[20px] h-[20px]" src="../assets/img/dobleleft.png" alt=""><div>` : `<div class="h-[20px]"></div>`}
     </div>`;
 
 // funcion alerta toast
