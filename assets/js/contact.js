@@ -1,9 +1,8 @@
 let form = document.getElementById("formulario")
 let consultas = [];
-let sTcon=[];
-if (JSON.parse(sessionStorage.getItem("consultas"))) {
-    consultas.push(JSON.parse(sessionStorage.getItem("consultas")))
-}
+let sTcon = [];
+
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     console.log("evento");
@@ -17,6 +16,9 @@ form.addEventListener("submit", (e) => {
         }
         console.log(consultas)
         alert(`Gracias por su mensaje ${nombreC}, a la brevedad estaremos en contacto`)
+        if (JSON.parse(sessionStorage.getItem("consultas"))) {
+            consultas = (JSON.parse(sessionStorage.getItem("consultas")))
+        }
         consultas.push({
             nombre: nombreC,
             email: emailC,
