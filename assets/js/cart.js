@@ -45,37 +45,17 @@ function mostrarCarrito() {
     // fila.classList.add("")
     const columnaImagen = document.createElement("td");
     const imagen = document.createElement("img");
+    imagen.classList.add("imagen_prod", "object-cover","rounded-md","self-center","border","border-[--chocolate]")
     imagen.src = obtenerUrlImagen(item.id);
     imagen.alt = "Imagen del producto";
     imagen.style.maxWidth = "100px";
     columnaImagen.appendChild(imagen);
+    columnaImagen.classList.add("img--container")
     fila.appendChild(columnaImagen);
 
     const columnaProducto = document.createElement("td");
     columnaProducto.textContent = obtenerNombreProducto(item.id);
     fila.appendChild(columnaProducto);
-
-    // const columnaCantidad = document.createElement("td");
-    // columnaCantidad.textContent = item.cantidad;
-    // fila.appendChild(columnaCantidad);
-
-    // const columnaAcciones = document.createElement("td");
-
-    // const btnAumentar = document.createElement("button");
-    // btnAumentar.textContent = "+";
-    // btnAumentar.addEventListener("click", function () {
-    //   aumentarCantidad(item.id);
-    // });
-    // columnaAcciones.appendChild(btnAumentar);
-
-    // const btnReducir = document.createElement("button");
-    // btnReducir.textContent = "-";
-    // btnReducir.addEventListener("click", function () {
-    //   reducirCantidad(item.id);
-    // });
-    // columnaAcciones.appendChild(btnReducir);
-
-    // fila.appendChild(columnaAcciones);
 
     const columnaAcciones = document.createElement("td");
 
