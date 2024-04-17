@@ -21,3 +21,47 @@
     box-shadow: 0 0 5px #ffee10;
     text-shadow: 0 0 5px #ffee10;
 }
+
+table {
+    border-collapse: collapse;
+    background-color: var(--crema);
+    width: 200px;
+    margin: 1rem;
+    /* background-color: var(--amarillo); */
+}
+
+table td,
+th {
+    border: 1px solid black;
+    border-color: var(--amarillo);
+    padding: 0.2rem 0.7rem;
+    text-align: center;
+}
+
+td.img--container{
+    display: flex;
+    justify-content: center;
+}
+
+.action_button{
+    background-color: var(--chocolate);
+    padding: 0.1rem 0.7rem;
+    margin: 0 1rem;
+}
+
+.action_button:hover{
+    box-shadow: 0px 5px 3px 3px #00000024;
+}
+
+.text_container p{
+    background-color: var(--crema);
+}
+
+.call_to_action--container{
+    width: 100%;
+}
+
+.call_to_action--card:hover{
+    background-color: var(--amarillo);
+    color: var(--crema);
+}
