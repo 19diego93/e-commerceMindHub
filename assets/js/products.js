@@ -53,21 +53,22 @@ let cardInterior = joya =>
     ${(joya.Stock < 5) ? `<div class="flex flex-wrap w-3/4 justify-center mt-7 bg-red-500 transition duration-300 ease-in-out hover:scale-110 rounded-lg"><img class="w-[25px] h-[25px]" src="../assets/img/dobleright.png" alt=""><p class="h-[25px] ">¡¡ Ultimas unidades !!</p><img class="w-[25px] h-[25px]" src="../assets/img/dobleleft.png" alt=""><div>` : ``}
     </div>`;
 
+// funcion alerta toast
+let toastBox = document.getElementById("toastBox");
+let toastAddCart = "Item se agregó exitosamente al carrito";
+let toastDelete = "Item se ha quitado del carrito"
+let toastMaxStock = "Stock insuficiente"
 
-    let toastBox = document.getElementById("toastBox");
-    let toastAddCart = "Item se agregó exitosamente al carrito";
-    let toastDelete = "Item se ha quitado del carrito"
-    
-    function showToast(msj) {
-        let toast = document.createElement("div");
-        toast.classList.add("toast");
-        toast.innerHTML = msj
-        toastBox.appendChild(toast)
+function showToast(msj) {
+    let toast = document.createElement("div");
+    toast.classList.add("toast");
+    toast.innerHTML = msj
+    toastBox.appendChild(toast)
 
-        setTimeout(()=>{
-            toast.remove();
-        },6000);
-    }
+    setTimeout(() => {
+        toast.remove();
+    }, 6000);
+}
 
 
 
@@ -143,6 +144,7 @@ contenedor.addEventListener("click", e => {
             if (listCartId.find(item => item.id == dataSetCartId)) {
                 listCartId = listCartId.filter(item => item.id != dataSetCartId)
                 listCartId.push(preList.find(item => item.id == dataSetCartId))
+
             } else {
                 listCartId.push(preList.find(item => item.id == dataSetCartId))
             }
@@ -159,6 +161,9 @@ contenedor.addEventListener("click", e => {
         } else if (joyas.find(item => item.id == dataSetCartId).Stock > preList.find(item => item.id == dataSetCartId).cantidad) {
             preList.find(item => item.id == dataSetCartId).cantidad++;
             localStorage.setItem("preCarrito", JSON.stringify(preList))
+
+        } else {
+            showToast(toastMaxStock)
         }
     }
     //aprieta -
@@ -173,7 +178,7 @@ contenedor.addEventListener("click", e => {
             } else {
                 preList = [];
                 listCartId = [];
-                
+
             }
             showToast(toastDelete);
             localStorage.setItem("preCarrito", JSON.stringify(preList))
